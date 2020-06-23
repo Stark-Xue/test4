@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>usr_list</title>
+    <style>
+        .pagination .page{
+            display: inline-block;
+            padding: 5px;
+            margin: 5px;
+            background-color: yellow;
+        }
+        .pagination .page.active{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    {% for i in data %}
+        <li>{{i}}</li>
+    {% endfor %}
+</ul>
+<div class="pagination">
+    {{ page_str }}
+</div>
+<div>
+    <select id='ps' onchange="changePageSize(this)">
+        <option value="10">10</option>
+        <option value="30">30</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+    </select>
+</div>
+<script src="/static/jquery-1.12.4.js"> </script>
+<script src="/static/jquery.cookie.js"> </script>
+<script>
+    $(function(){
+        $.cookie.raw = false;
+        var v = $.cookie('per_page_count');
+        console.log(v);
+        $("#ps").val(v);
+    });
+    function changePageSize(ths){
+        var v = $(ths).val();
+        console.log(v);
+        $.cookie('per_page_count', v, {'path': "/usr_list/"});
+        location.reload();
+    }
+</script>
+</body>
+</html>

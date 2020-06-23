@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" href="/static/commons.css" />
+        <style>
+            .pagination .page{
+                display: inline-block;
+                padding: 5px;
+                background-color: skyblue;
+                margin: 5px;
+            }
+            .pagination .page.active{
+                background-color: red;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <ul>
+            {% for i in user_list %}
+                <li>{{i}}</li>
+            {% endfor %}
+        </ul>
+        <div>
+            <select id='ps' onchange="changePageSize(this)">
+                <option value="10">10</option>
+                <option value="30">30</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+        </div>
+        <div class="pagination">
+            <!--{{ page_msg|safe }}-->
+            {{ page_msg }}
+        </div>
+        <script src="/static/jquery-1.12.4.js"> </script>
+        <script src="/static/jquery.cookie.js"> </script>
+        <script>
+            $(function(){
+                var v = $.cookie("per_page_count", {'path': "/user_list/"});
+                $("#ps").val(v);
+            });
+            function changePageSize(ths){
+                var v = $(ths).val();
+                console.log(v);
+                $.cookie('per_page_count', v, {'path': "/user_list/"});
+                location.reload();
+            }
+        </script>
+    </body>
+</html>

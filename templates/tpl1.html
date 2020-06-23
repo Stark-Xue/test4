@@ -1,0 +1,47 @@
+{% extends 'master.html' %} <!--模版之继承-->
+
+{% block title %}用户管理{% endblock %} <!--模版之继承-->
+
+{% block content %}
+    <h1>用户管理</h1>
+    <ul>
+        {%  for i in u %}
+            <li>{{ i }}</li>
+        {%  endfor %}
+    </ul>
+
+    {% include "tag.html" %} <!--模版之导入-->
+
+{% endblock %}
+<!--
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" href="/static/commons.css" />
+        <style>
+            .pg-header{
+                height: 48px;
+                background-color: skyblue;
+                color: black;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="pg-header">小男孩管理</div>
+
+        <h1>用户管理</h1>
+        <ul>
+            {%  for i in u %}
+                <li>{{ i }}</li>
+            {%  endfor %}
+        </ul>
+
+        <script src="/static/jquery-1.12.4.js"> </script>
+        <script>
+            
+        </script>
+    </body>
+</html>
+-->
